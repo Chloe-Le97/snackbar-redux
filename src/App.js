@@ -1,26 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { useDispatch } from "react-redux";
+import { setSnackbar } from "./redux/reducer";
+import { Button } from "@material-ui/core";
+import Snackbar from "./Snackbar";
 
-function App() {
+const Engineer = () => {
+  const dispatch = useDispatch();
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={() =>
+          dispatch(
+            setSnackbar(
+              true,
+              "success",
+              "Success!"
+            )
+          )
+        }
+      >
+        Success message
+      </Button>
+      <Button
+        variant="contained"
+        color="secondary"
+        onClick={() =>
+          dispatch(
+            setSnackbar(
+              true,
+              "error",
+              "There is an error"
+            )
+          )
+        }
+      >
+        Error message
+      </Button>
+      <Snackbar/>
+    </>
   );
-}
+};
 
-export default App;
+export default Engineer;
